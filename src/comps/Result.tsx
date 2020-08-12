@@ -1,5 +1,9 @@
 import React from 'react'
 
-export default () => {
-    return <h1>Locked</h1>
+type Props = {
+    unlocked: Boolean
+}
+
+export default ({ unlocked }: Props) => {
+    return <h1>{unlocked ? 'Unlocked' : 'Locked'}</h1>
 }

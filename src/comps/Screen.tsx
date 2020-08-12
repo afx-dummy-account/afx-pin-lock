@@ -5,6 +5,8 @@ const StyledScreen = styled.h2`
     font-size: 30px;
 `
 
-export default () => {
-    return <StyledScreen>* * * *</StyledScreen>
+type Props = {
+    digits: Number[] | null
 }
+
+export default ({ digits }: Props) => <StyledScreen>{digits?.reduce((acc, _) => acc + ' *', '')}</StyledScreen>
