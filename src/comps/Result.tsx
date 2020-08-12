@@ -1,5 +1,5 @@
 import React from 'react'
 
 export default () => {
-    return <h1>Result</h1>
+    return <h1>Locked</h1>
 }

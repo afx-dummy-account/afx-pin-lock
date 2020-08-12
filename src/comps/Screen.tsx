@@ -1,5 +1,10 @@
 import React from 'react'
+import styled from 'styled-components'
+
+const StyledScreen = styled.h2`
+    font-size: 30px;
+`
 
 export default () => {
-    return <h2>Screen</h2>
+    return <StyledScreen>* * * *</StyledScreen>
 }
