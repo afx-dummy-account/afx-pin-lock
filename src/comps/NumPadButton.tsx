@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { digit } from './Screen'
 
 const StyledButton = styled.button`
   width: 100px;
@@ -25,10 +26,14 @@ const StyledButton = styled.button`
   }
 `;
 
+type NumpadValue = digit | 'Clear' | 'Unlock'
+
+// TODO: type
 type Props = {
-    value: String
+    value: NumpadValue
+    onPress: () => void
 }
 
-export default ({ value }: Props) => {
-  return <StyledButton>{value}</StyledButton>;
+export default ({ value, onPress }: Props) => {
+  return <StyledButton onClick={onPress}>{value}</StyledButton>;
 };
