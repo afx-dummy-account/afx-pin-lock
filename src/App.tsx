@@ -12,10 +12,17 @@ const correctCombination = "2004"; // Alpha FX incorporation
 
 const GlobalStyle = createGlobalStyle`
   html {
-    font-size: 2vw;
+    font-size: 1vw;
+  }
+
+  @media screen and (min-width: 50em) {
+    html {
+      font-size: 0.8em;
+    }
   }
 
   body {
+    font-size: calc(12px + 2vw);
     display: flex;
     width: 100vw;
     height: 100vh;
