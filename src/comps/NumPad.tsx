@@ -1,17 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import NumPadButton from "./NumPadButton";
+import { NumpadButton, NumpadDigitButton } from "./NumPadButton";
 
 const NumPadContainer = styled.div`
   display: grid;
   grid-template-rows: repeat(3, 120px);
   grid-template-columns: repeat(3, 120px);
 `;
-
-// TODO: rename, type, in function and in hook
-const createDigitPressHandler = (value: any, prev: any, setter: any) => () => {
-  setter([...(prev.length === 4 ? prev.slice(1) : prev), value]);
-};
 
 // TODO: type
 type Props = {
@@ -38,67 +33,89 @@ export default ({
 }: Props) => {
   return (
     <NumPadContainer>
-      <NumPadButton
-        onPress={createDigitPressHandler("1", digits, setDigits)}
+      <NumpadDigitButton
+        digits={digits}
+        setDigits={setDigits}
         value="1"
+        keyCode={49}
       />
-      <NumPadButton
-        onPress={createDigitPressHandler("2", digits, setDigits)}
+      <NumpadDigitButton
+        digits={digits}
+        setDigits={setDigits}
         value="2"
+        keyCode={50}
       />
-      <NumPadButton
-        onPress={createDigitPressHandler("3", digits, setDigits)}
+      <NumpadDigitButton
+        digits={digits}
+        setDigits={setDigits}
         value="3"
+        keyCode={51}
       />
-      <NumPadButton
-        onPress={createDigitPressHandler("4", digits, setDigits)}
+      <NumpadDigitButton
+        digits={digits}
+        setDigits={setDigits}
         value="4"
+        keyCode={52}
       />
-      <NumPadButton
-        onPress={createDigitPressHandler("5", digits, setDigits)}
+      <NumpadDigitButton
+        digits={digits}
+        setDigits={setDigits}
         value="5"
+        keyCode={53}
       />
-      <NumPadButton
-        onPress={createDigitPressHandler("6", digits, setDigits)}
+      <NumpadDigitButton
+        digits={digits}
+        setDigits={setDigits}
         value="6"
+        keyCode={54}
       />
-      <NumPadButton
-        onPress={createDigitPressHandler("7", digits, setDigits)}
+      <NumpadDigitButton
+        digits={digits}
+        setDigits={setDigits}
         value="7"
+        keyCode={55}
       />
-      <NumPadButton
-        onPress={createDigitPressHandler("8", digits, setDigits)}
+      <NumpadDigitButton
+        digits={digits}
+        setDigits={setDigits}
         value="8"
+        keyCode={56}
       />
-      <NumPadButton
-        onPress={createDigitPressHandler("9", digits, setDigits)}
+      <NumpadDigitButton
+        digits={digits}
+        setDigits={setDigits}
         value="9"
+        keyCode={57}
       />
-      <NumPadButton
-        onPress={() => {
+      <NumpadButton
+        onClick={() => {
           setDigits([]);
         }}
-        value="Clear"
-      />
-      <NumPadButton
-        onPress={createDigitPressHandler("0", digits, setDigits)}
+      >
+        Clear
+      </NumpadButton>
+      <NumpadDigitButton
+        digits={digits}
+        setDigits={setDigits}
         value="0"
+        keyCode={48}
       />
-      <NumPadButton
-        onPress={() => {
+      <NumpadButton
+        onClick={() => {
           if (digits.join("") === correctCombination) {
             setIncorrect(false)
             setUnlocked(true);
             setAttempts(0);
           } else {
             setIncorrect(true)
+            setUnlocked(false);
           }
 
-          if (attempts <= 2) {
+          if (attempts <= 1) {
             setAttempts(attempts + 1);
           }
 
-          if (attempts === 3) {
+          if (attempts === 2) {
             setBlocked(true)
             setAttempts(0);
 
@@ -107,8 +124,9 @@ export default ({
 
           setDigits([]);
         }}
-        value="Unlock"
-      />
+      >
+        Unlock
+      </NumpadButton>
     </NumPadContainer>
   );
 };

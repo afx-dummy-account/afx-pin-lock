@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useEffect, useCallback } from "react";
 import styled from "styled-components";
-import { digit } from './Screen'
 
-const StyledButton = styled.button`
+export const NumpadButton = styled.button`
   width: 100px;
   height: 100px;
   font-size: 24px;
@@ -26,14 +25,38 @@ const StyledButton = styled.button`
   }
 `;
 
-type NumpadValue = digit | 'Clear' | 'Unlock'
-
 // TODO: type
 type Props = {
-    value: NumpadValue
-    onPress: () => void
-}
+  digits: any;
+  setDigits: any;
+  value: any;
+  keyCode: any;
+};
 
-export default ({ value, onPress }: Props) => {
-  return <StyledButton onClick={onPress}>{value}</StyledButton>;
+export const NumpadDigitButton = ({ value, digits, setDigits, keyCode }: Props) => {
+  const handlePress = useCallback(() => {
+    setDigits([...(digits.length === 4 ? digits.slice(1) : digits), value])
+  }, [digits, setDigits, value])
+
+  const escFunction = useCallback((event) => {
+    console.log('escFunction')
+    if(event.keyCode === keyCode) {
+      handlePress()
+    }
+  }, [keyCode, handlePress]);
+
+  useEffect(() => {
+    document.addEventListener('keydown', escFunction, false);
+
+    return () => {
+      document.removeEventListener('keydown', escFunction, false);
+    };
+  }, [escFunction]);
+
+  return (
+    <NumpadButton
+      onClick={handlePress} >
+      {value}
+    </NumpadButton>
+  );
 };

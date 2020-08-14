@@ -8,7 +8,7 @@ import NumPad from "./comps/NumPad";
 
 import { digit } from "./comps/Screen";
 
-const correctCombination = "1804"; // Founding of Schroders
+const correctCombination = "2004"; // Alpha FX incorporation
 
 const ErrorNotice = styled.h3`
   height: 20px;
