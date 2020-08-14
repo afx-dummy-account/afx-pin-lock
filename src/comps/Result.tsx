@@ -4,4 +4,4 @@ type Props = {
     unlocked: Boolean
 }
 
-export default ({ unlocked }: Props) => <h1>{unlocked ? 'Unlocked' : 'Locked'}</h1>
+export default ({ unlocked }: Props) => <h1>{unlocked ? 'UNLOCKED' : 'LOCKED'}</h1>

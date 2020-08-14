@@ -37,12 +37,14 @@ type Props = {
   setDigits: any;
   value: any;
   keyCode: any;
+  setIncorrect: any;
 };
 
-export const NumpadDigitButton = ({ value, digits, setDigits, keyCode }: Props) => {
+export const NumpadDigitButton = ({ value, digits, setDigits, keyCode, setIncorrect }: Props) => {
   const handlePress = useCallback(() => {
+    setIncorrect(false)
     setDigits([...(digits.length === 4 ? digits.slice(1) : digits), value])
-  }, [digits, setDigits, value])
+  }, [setIncorrect, digits, setDigits, value])
 
   const handleKeyPress = useCallback((event) => {
     if(event.keyCode === keyCode && digits.length < 4) {

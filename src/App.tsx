@@ -32,7 +32,7 @@ function App() {
         {incorrect && !blocked && 'Incorrect entry'}
         {blocked && 'Too many incorrect attempts'}
       </ErrorNotice>
-      {!blocked &&
+      {!unlocked && !blocked &&
         <>
           <Screen digits={digits} />
           <NumPad
