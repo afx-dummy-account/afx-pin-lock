@@ -6,7 +6,7 @@ const NumPadContainer = styled.div`
   display: grid;
   grid-template-rows: repeat(4, 1fr);
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 2rem;
+  grid-gap: 1.5rem;
 
   &::before {
     content: '';

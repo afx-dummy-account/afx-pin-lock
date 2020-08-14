@@ -12,31 +12,37 @@ const correctCombination = "2004"; // Alpha FX incorporation
 
 const GlobalStyle = createGlobalStyle`
   html {
-    font-size: 1vw;
+    font-size: 0.75em;
   }
 
-  @media screen and (min-width: 50em) {
+  @media screen and (min-width: 75em) {
     html {
-      font-size: 0.8em;
+      font-size: 1vw;
+    }
+  }
+
+  @media screen and (min-width: 100em) {
+    html {
+      font-size: 1em;
     }
   }
 
   body {
-    font-size: calc(12px + 2vw);
     display: flex;
     width: 100vw;
     height: 100vh;
     justify-content: center;
-    align-items: center;
   }
 `
 
 // TODO: rename
-const Container = styled.div``
+const Container = styled.div`
+  min-width: 25em;
+`
 
 const ErrorNotice = styled.h3`
-  font-size: 2rem;
-  height: 3rem;
+  font-size: 1.5rem;
+  height: 1.5rem;
   text-align: center;
 `
 
