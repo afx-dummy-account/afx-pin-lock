@@ -2,17 +2,16 @@ import React, { useEffect, useCallback } from "react";
 import styled from "styled-components";
 
 export const NumpadButton = styled.button`
-  width: 100px;
-  height: 100px;
-  font-size: 24px;
+  width: 100%;
+  font-size: 2rem;
   text-align: center;
   cursor: pointer;
   outline: none;
   color: #fff;
   background-color: ${({ disabled }) => disabled ? '#eee' : '#ccc'};
   border: none;
-  border-radius: 15px;
-  box-shadow: 0 9px ${({ disabled }) => disabled ? '#bbb' : '#999'};
+  border-radius: 2rem;
+  box-shadow: 0 1rem ${({ disabled }) => disabled ? '#bbb' : '#999'};
 
   ${({ disabled }) => {
     if (!disabled) {
@@ -23,8 +22,8 @@ export const NumpadButton = styled.button`
 
         &:active {
           background-color: #aaa;
-          box-shadow: 0 5px #666;
-          transform: translateY(4px);
+          box-shadow: 0 0.5rem #666;
+          transform: translateY(0.4rem);
         }
       `
     }

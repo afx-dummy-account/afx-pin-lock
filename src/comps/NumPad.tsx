@@ -4,9 +4,23 @@ import { NumpadButton, NumpadDigitButton } from "./NumPadButton";
 
 const NumPadContainer = styled.div`
   display: grid;
-  grid-template-rows: repeat(3, 120px);
-  grid-template-columns: repeat(3, 120px);
-`;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2rem;
+
+  &::before {
+    content: '';
+    width: 0;
+    padding-bottom: 100%;
+    grid-row: 1 / 1;
+    grid-column: 1 / 1;
+  }
+
+  & > *:first-child{
+    grid-row: 1 / 1;
+    grid-column: 1 / 1;
+  } 
+`
 
 // TODO: type
 type Props = {

@@ -2,12 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 
 const StyledScreen = styled.h2`
-    font-size: 30px;
-    border-radius: 15px;
+    font-size: 3rem;
+    border-radius: 1rem;
     border: 1px solid #666;
-    padding: 10px;
-    width: 318px;
-    height: 30px;
+    padding: 1rem;
+    width: calc(100% - 2rem - 2px);
+    height: 3rem;
 `
 
 // TODO: centralize
