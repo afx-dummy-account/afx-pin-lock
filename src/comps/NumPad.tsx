@@ -88,8 +88,11 @@ export default ({
         keyCode={57}
       />
       <NumpadButton
+        disabled={digits.length === 0}
         onClick={() => {
-          setDigits([]);
+          if (digits.length > 0) {
+            setDigits([]);
+          }
         }}
       >
         Clear
@@ -101,28 +104,31 @@ export default ({
         keyCode={48}
       />
       <NumpadButton
+        disabled={digits.length !== 4}
         onClick={() => {
-          if (digits.join("") === correctCombination) {
-            setIncorrect(false)
-            setUnlocked(true);
-            setAttempts(0);
-          } else {
-            setIncorrect(true)
-            setUnlocked(false);
+          if (digits.length === 4) {
+            if (digits.join("") === correctCombination) {
+              setIncorrect(false)
+              setUnlocked(true);
+              setAttempts(0);
+            } else {
+              setIncorrect(true)
+              setUnlocked(false);
+            }
+
+            if (attempts <= 1) {
+              setAttempts(attempts + 1);
+            }
+
+            if (attempts === 2) {
+              setBlocked(true)
+              setAttempts(0);
+
+              return
+            }
+
+            setDigits([]);
           }
-
-          if (attempts <= 1) {
-            setAttempts(attempts + 1);
-          }
-
-          if (attempts === 2) {
-            setBlocked(true)
-            setAttempts(0);
-
-            return
-          }
-
-          setDigits([]);
         }}
       >
         Unlock

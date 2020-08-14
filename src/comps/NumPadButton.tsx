@@ -9,20 +9,26 @@ export const NumpadButton = styled.button`
   cursor: pointer;
   outline: none;
   color: #fff;
-  background-color: #ccc;
+  background-color: ${({ disabled }) => disabled ? '#eee' : '#ccc'};
   border: none;
   border-radius: 15px;
-  box-shadow: 0 9px #999;
+  box-shadow: 0 9px ${({ disabled }) => disabled ? '#bbb' : '#999'};
 
-  &:hover {
-    background-color: #aaa;
-  }
+  ${({ disabled }) => {
+    if (!disabled) {
+      return `
+        &:hover {
+          background-color: #aaa;
+        }
 
-  &:active {
-    background-color: #aaa;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-  }
+        &:active {
+          background-color: #aaa;
+          box-shadow: 0 5px #666;
+          transform: translateY(4px);
+        }
+      `
+    }
+  }}
 `;
 
 // TODO: type
@@ -38,23 +44,23 @@ export const NumpadDigitButton = ({ value, digits, setDigits, keyCode }: Props) 
     setDigits([...(digits.length === 4 ? digits.slice(1) : digits), value])
   }, [digits, setDigits, value])
 
-  const escFunction = useCallback((event) => {
-    console.log('escFunction')
-    if(event.keyCode === keyCode) {
+  const handleKeyPress = useCallback((event) => {
+    if(event.keyCode === keyCode && digits.length < 4) {
       handlePress()
     }
-  }, [keyCode, handlePress]);
+  }, [keyCode, digits, handlePress]);
 
   useEffect(() => {
-    document.addEventListener('keydown', escFunction, false);
+    document.addEventListener('keydown', handleKeyPress, false);
 
     return () => {
-      document.removeEventListener('keydown', escFunction, false);
+      document.removeEventListener('keydown', handleKeyPress, false);
     };
-  }, [escFunction]);
+  }, [handleKeyPress]);
 
   return (
     <NumpadButton
+      disabled={digits.length === 4}
       onClick={handlePress} >
       {value}
     </NumpadButton>
