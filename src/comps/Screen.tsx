@@ -7,6 +7,7 @@ const StyledScreen = styled.h2`
     border: 1px solid #666;
     padding: 10px;
     width: 318px;
+    height: 30px;
 `
 
 // TODO: centralize

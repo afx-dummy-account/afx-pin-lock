@@ -1,24 +1,53 @@
-import React, { useState } from 'react';
-// TODO: rename Result
-import Result from './comps/Result'
-import Screen from './comps/Screen'
-import NumPad from './comps/NumPad'
+import React, { useState } from "react";
+import styled from "styled-components";
 
-import { digit } from './comps/Screen'
+// TODO: rename Result
+import Result from "./comps/Result";
+import Screen from "./comps/Screen";
+import NumPad from "./comps/NumPad";
+
+import { digit } from "./comps/Screen";
+
+const correctCombination = "1804"; // Founding of Schroders
+
+const ErrorNotice = styled.h3`
+  height: 20px;
+`
 
 function App() {
-  const [unlocked, setUnlocked] = useState(false)
-  const [digits, setDigits] = useState<digit[]>([])
-  const [attempts, setAttempts] = useState(0)
-  const [blocked, setBlocked] = useState(false)
+  // TODO: context?
+  const [unlocked, setUnlocked] = useState(false);
+  // TODO: should digits just be a string?
+  const [digits, setDigits] = useState<digit[]>([]);
+  const [attempts, setAttempts] = useState(0);
+  const [blocked, setBlocked] = useState(false);
+  const [incorrect, setIncorrect] = useState(false);
 
-  console.log('digits', digits)
+  console.log("digits", digits);
 
   return (
     <>
       <Result unlocked={unlocked} />
-      <Screen digits={digits} />
-      <NumPad digits={digits} setDigits={setDigits} />
+      <ErrorNotice>
+        {incorrect && !blocked && 'Incorrect entry'}
+        {blocked && 'Too many incorrect attempts'}
+      </ErrorNotice>
+      {!blocked &&
+        <>
+          <Screen digits={digits} />
+          <NumPad
+            digits={digits}
+            setDigits={setDigits}
+            setUnlocked={setUnlocked}
+            correctCombination={correctCombination}
+            attempts={attempts}
+            setAttempts={setAttempts}
+            blocked={blocked}
+            setBlocked={setBlocked}
+            setIncorrect={setIncorrect}
+          />
+        </>
+      }
     </>
   );
 }
